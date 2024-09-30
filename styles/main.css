@@ -1,3 +1,75 @@
-.container {
+*, 
+::after, 
+::before{
+    box-sizing: border-box;
+  }
+
+  html {
+    height: 100%;
+  }
+  
+  body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main {
+    flex-grow: 1;
+  }
+  
+  ul, ol {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .container {
+    max-width: 1300px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
     
-}
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .players-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+
+ 
