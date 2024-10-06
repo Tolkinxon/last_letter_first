@@ -58,11 +58,24 @@
     overflow: hidden;
   }
 
+  .heading {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+
   button {
     outline: none;
     border: none;
     background-color: transparent;
     cursor: pointer;
+  }
+
+  .show-words-contaner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 100px;
   }
 
   .players-container {

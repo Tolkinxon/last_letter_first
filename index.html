@@ -7,13 +7,18 @@
   <title>Last letter first game</title>
 </head>
 <body>
-    <header>
-      <h1 class="heading">Last letter first game</h1>
+    <header class="container">
+      <h1 id="head" class="heading">Last letter first game</h1>
     </header>
 
     <main>
-        <section class="container">
-            <p>Recognized Speech: <span id="recognized-text"></span></p>
+        <div class="container show-words-contaner" >
+            <h1 id="head" class="heading fail" style="display: none;"></h1>
+        </div>
+
+        <section class="container show-words-contaner result"  >
+            <p>person:  <span id="recognized-text-person">----</span></p> <br>
+            <p>robot:  <span id="recognized-text-robot">-----</span></p>
         </section>
 
         <section>
@@ -32,7 +37,8 @@
     </main>
   
 
-   <script src="words.js"></script>
-  <script src="script.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/words.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
