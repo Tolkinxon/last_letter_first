@@ -16,11 +16,25 @@ recognition.maxAlternatives = 1;
 recognition.onresult = function(event) {
   const transcript = event.results[0][0].transcript;
 
-  person.style.display = 'block';
-  robot.style.display = 'none'
+  
+  let prevWords = JSON.parse(getItem('prevWords')) || []
+ 
+  if(!(prevWords.some(item => item == transcript))){
+      prevWords.push(word)
+      setItem('prevWords', prevWords)
 
-  outputPerson.textContent = transcript;
-  robotsTurn(transcript.toLowerCase().at(-1)) 
+      person.style.display = 'block';
+      robot.style.display = 'none'
+
+      outputPerson.textContent = transcript;
+    
+      robotsTurn(transcript.toLowerCase().at(-1)) 
+  } else {
+    result.style.display = 'none'
+    fail.style.display = 'block'
+    fail.textContent = 'person failed'
+    setItem('robotsWords', [])
+  }
 };
 
 recognition.onerror = function(event) {
@@ -32,19 +46,18 @@ recognition.onend = function() {
 };
 
 
-
 startButton.addEventListener('click', () => {
   recognition.start();
 });
 
 function robotsTurn (lastLetter) {
   let firstLetterWords = words[lastLetter]
-  let prevRobotsWords = JSON.parse(getItem('robotsWords')) || []
+  let prevWords = JSON.parse(getItem('prevWords')) || []
 
   for(let word of firstLetterWords) {
-    if(!(prevRobotsWords.some(item => item == word))){
-      prevRobotsWords.push(word)
-      setItem('robotsWords', prevRobotsWords)
+    if(!(prevWords.some(item => item == word))){
+      prevWords.push(word)
+      setItem('prevWords', prevWords)
       setTimeout(()=>{
 
          person.style.display = 'none';
@@ -64,12 +77,5 @@ function robotsTurn (lastLetter) {
   return   
 } 
 
-// function checkRobot(){
-//   let prevRobotsWords = JSON.parse(getItem('robotsWords')) || []
 
-//   if(prevRobotsWords.some(item => item == outputRobot.textContent.toLocaleLowerCase())){
- 
-  
-//   }
-// }
 
