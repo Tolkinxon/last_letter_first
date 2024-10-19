@@ -4,6 +4,9 @@ const outputPerson = document.getElementById('recognized-text-person');
 const result = document.querySelector('.result')
 const fail = document.querySelector('.fail')
 
+  outputPerson.style.display = 'block';
+  outputRobot.style.display = 'none'
+
 const recognition = new window.webkitSpeechRecognition();
 
 recognition.lang = 'en-US';
@@ -13,8 +16,10 @@ recognition.maxAlternatives = 1;
 recognition.onresult = function(event) {
   const transcript = event.results[0][0].transcript;
 
+  outputPerson.style.display = 'block';
+  outputRobot.style.display = 'none'
   outputPerson.textContent = transcript;
-  setTimeout(robotsTurn(transcript.toLowerCase().at(-1)), 10000) 
+  robotsTurn(transcript.toLowerCase().at(-1)) 
 };
 
 recognition.onerror = function(event) {
@@ -39,7 +44,11 @@ function robotsTurn (lastLetter) {
     if(!(prevRobotsWords.some(item => item == word))){
       prevRobotsWords.push(word)
       setItem('robotsWords', prevRobotsWords)
-      outputRobot.textContent = word;
+      setTimeout(()=>{
+        outputPerson.style.display = 'none';
+        outputRobot.style.display = 'block'
+        outputRobot.textContent = word;
+      },3000)
       return 
     }
   }
